@@ -19,10 +19,10 @@ const router = createRouter({
       component: () => import('../views/auth/RegisterView.vue')
     },
     {
-      path: '/client',
+      path: '/profile',
       name: 'client',
       component: () => import('../views/profile/ClientView.vue'),
-      redirect: '/client/client-info', // Redirect to client-info
+      redirect: '/profile/client-info', // Redirect to client-info
       children: [
         {
           path: 'client-info',
