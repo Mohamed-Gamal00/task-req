@@ -7,7 +7,11 @@
         </a>
         <div>
           <div class="d-flex align-items-center">
-            <div>
+            <div v-if="user">
+              <img :src="user.image" width="40" height="40" class="rounded-circle" alt="personal" />&nbsp; &nbsp;
+              <span class="text-yellow">{{ user.full_name }}</span>
+            </div>&nbsp; &nbsp;&nbsp; &nbsp;
+            <div v-if="!user">
               <a href="#" class="text-yellow">Create Account</a>&nbsp; &nbsp;
               <router-link class="text-decoration-none text-yellow" :to="{ name: 'login' }"
                 >Login</router-link
@@ -57,17 +61,50 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  data() {
+    return {
+      user: []
+    }
+  },
   mounted() {
-    const showBtn = document.querySelector('.btn-bars'),
-      closeBtn = document.querySelector('.btn-close'),
-      navMenu = document.querySelector('.naavbar-collapse')
-    showBtn.addEventListener('click', () => {
-      navMenu.classList.add('showMenu')
-    })
-    closeBtn.addEventListener('click', () => {
-      navMenu.classList.remove('showMenu')
-    })
+    this.user = localStorage.getItem('user')
+    // console.log(this.user)
+    // console.log('user', this.use)
+
+    this.sideBar()
+    this.fetchclient()
+  },
+  methods: {
+    sideBar() {
+      const showBtn = document.querySelector('.btn-bars'),
+        closeBtn = document.querySelector('.btn-close'),
+        navMenu = document.querySelector('.naavbar-collapse')
+      showBtn.addEventListener('click', () => {
+        navMenu.classList.add('showMenu')
+      })
+      closeBtn.addEventListener('click', () => {
+        navMenu.classList.remove('showMenu')
+      })
+    },
+    async fetchclient() {
+      const token = localStorage.getItem('token')
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+
+      await axios
+        .get('http://lawyer.phpv8.aait-d.com/api/client_web/profile', config)
+        .then((res) => {
+          this.user = res.data.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
 }
 </script>

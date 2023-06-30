@@ -1,85 +1,93 @@
 <template>
   <div>
-    <div id="client">
-      <NavBarCom />
-      <!-- header -->
-      <section class="main">
-        <div class="header-wrapper">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-12 d-flex text-center">
-              <h1 class="text-white">
-                <FontAwesome
-                  class="ms-2 fs-16 p-3 rounded-circle text-yellow"
-                  style="background-color: #916e4136"
-                  icon="user-group"
-                />
-
-                <span class="text-yellow">My Account</span>
-              </h1>
-            </div>
-            <div class="col-md-6"></div>
-          </div>
-        </div>
-      </section>
-    </div>
     <!-- content -->
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-md-12 justify-content-center">
           <div class="row">
-            <div class="card border-0">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="row d-flex justify-content-center">
-                    <div
-                      class="card border-0 text-center"
-                      style="width: 18rem; background-color: #f6fafc"
-                    >
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-transparent">
-                          <router-link
-                            class="btn_btn_link text-decoration-none"
-                            :to="{ name: 'client-info' }"
-                            >Profile Information</router-link
-                          >
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                          <router-link
-                            class="btn_btn_link text-decoration-none"
-                            :to="{ name: 'change-pass' }"
-                            >Change Password</router-link
-                          >
-                        </li>
-                        <li class="list-group-item bg-transparent text-danger">Delete Account</li>
-                        <li class="list-group-item bg-transparent text-danger">
-                          <button style="width: 100%" class="btn" @click="Logout()">Logout</button>
-                        </li>
-                      </ul>
+            <h1>Change password</h1>
+            <!-- image -->
+            <div class="row d-flex justify-content-center text-center">
+              <div class="text-center">
+                <img
+                  :src="user.image"
+                  width="50"
+                  height="50"
+                  class="rounded-circle"
+                  alt="personal"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <form class="form-inline" @submit.prevent="clientLogin">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 mt-lg-4 mb-lg-4">
+                    <div class="row">
+                      <!-- name-->
+                      <div class="col-md-6 mb-3">
+                        <label for="validationustomUsername">name</label>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationustomUsername"
+                            placeholder="Username"
+                            aria-describedby="inputGroupPrepend"
+                            v-model="user.full_name"
+                          />
+                        </div>
+                      </div>
+                      <!-- email -->
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustomUsernam">email</label>
+                        <div class="input-group">
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="validationCustomUsernam"
+                            placeholder="Username"
+                            aria-describedby="inputGroupPrepend"
+                            v-model="user.email"
+                          />
+                        </div>
+                      </div>
+                      <!-- phone_Number -->
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustomUsername">Phone Number</label>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustomUsername"
+                            placeholder="password"
+                            aria-describedby="inputGroupPrepend"
+                            v-model="user.phone"
+                          />
+                        </div>
+                      </div>
+                      <!-- save -->
+                      <div class="d-flex justify-content-end">
+                        <div class="col-md-12 justify-content-center text-center">
+                          <button type="submit" style="background-color: #c8a45d" class="btn">
+                            save
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="col-md-8 bg-light">
-                  <router-view></router-view>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <FooterCom />
 </template>
 
 <script>
-import NavBarCom from '../../components/layout/NavBarCom.vue'
-// import ClientInfoCom from '../../components/profile/ClientInfoCom.vue'
-import FooterCom from '../../components/layout/FooterCom.vue'
-
 import axios from 'axios'
 export default {
-  components: { NavBarCom, FooterCom },
   data() {
     return {
       user: []
@@ -110,10 +118,6 @@ export default {
         .catch((error) => {
           console.error(error)
         })
-    },
-    Logout() {
-      localStorage.clear()
-      this.$router.push({ name: 'login' })
     }
   }
 }

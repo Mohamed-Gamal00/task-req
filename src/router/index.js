@@ -21,7 +21,20 @@ const router = createRouter({
     {
       path: '/client',
       name: 'client',
-      component: () => import('../views/profile/ClientView.vue')
+      component: () => import('../views/profile/ClientView.vue'),
+      redirect: '/client/client-info', // Redirect to client-info
+      children: [
+        {
+          path: 'client-info',
+          name: 'client-info',
+          component: () => import('../components/profile/ClientInfoCom.vue')
+        },
+        {
+          path: 'change-pass',
+          name: 'change-pass',
+          component: () => import('../components/profile/ChangePassCom.vue')
+        }
+      ]
     },
     {
       path: '/server-erro',

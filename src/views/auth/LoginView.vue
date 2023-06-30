@@ -55,7 +55,7 @@
                             type="text"
                             class="form-control"
                             id="validationCustomUsernam"
-                            placeholder="Username"
+                            placeholder="phone_code"
                             aria-describedby="inputGroupPrepend"
                             v-model="phone_code"
                           />
@@ -123,6 +123,12 @@ export default {
       password: ''
     }
   },
+  mounted() {
+    let user = localStorage.getItem('user')
+    if (user) {
+      this.$router.push({ name: 'client' })
+    }
+  },
   methods: {
     async clientLogin() {
       const credentaials = {
@@ -138,7 +144,7 @@ export default {
           localStorage.setItem('token', res.data.data.token)
           localStorage.setItem('user', JSON.stringify(res.data))
           setAuthHeader(res.data.token)
-          this.$router.push({ name: 'home' })
+          this.$router.push({ name: 'client' })
         })
         .catch((err) => {
           console.log(err)
@@ -189,11 +195,11 @@ input::-webkit-inner-spin-button {
 }
 /* icon */
 .form-control:focus {
-    color: var(--bs-body-color);
-    background-color: var(--bs-body-bg);
-    border-color: #20212259;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0);
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #20212259;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0);
 }
 .input-group-text {
   display: flex;
