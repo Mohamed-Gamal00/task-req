@@ -3,14 +3,23 @@
     <nav class="navbar navbar-expand-lg bg-transparent d-flex justify-content-center">
       <div class="container py-3">
         <a href="#" class="site-name">
-          <img src="../../assets/images/logo.png" alt="logo" loading="lazy" />
+          <router-link :to="{ name: 'home' }">
+            <img src="../../assets/images/logo.png" alt="logo" loading="lazy" />
+          </router-link>
         </a>
         <div>
           <div class="d-flex align-items-center">
             <div v-if="user">
-              <img :src="user.image" width="40" height="40" class="rounded-circle" alt="personal" />&nbsp; &nbsp;
+              <img
+                :src="user.image"
+                width="40"
+                height="40"
+                class="rounded-circle"
+                alt="personal"
+              />&nbsp; &nbsp;
               <span class="text-yellow">{{ user.full_name }}</span>
-            </div>&nbsp; &nbsp;&nbsp; &nbsp;
+            </div>
+            &nbsp; &nbsp;&nbsp; &nbsp;
             <div v-if="!user">
               <a href="#" class="text-yellow">Create Account</a>&nbsp; &nbsp;
               <router-link class="text-decoration-none text-yellow" :to="{ name: 'login' }"
