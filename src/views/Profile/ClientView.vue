@@ -1,7 +1,6 @@
 <template>
   <div>
     <ClientCom />
-    <router-view></router-view>
   </div>
 </template>
 

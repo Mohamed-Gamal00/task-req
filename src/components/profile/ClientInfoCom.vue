@@ -62,6 +62,7 @@
                             placeholder="password"
                             aria-describedby="inputGroupPrepend"
                             v-model="user.phone"
+                            
                           />
                         </div>
                       </div>

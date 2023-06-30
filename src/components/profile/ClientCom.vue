@@ -29,6 +29,7 @@
           <div class="row">
             <div class="card border-0">
               <div class="row">
+                <!-- settings -->
                 <div class="col-md-4">
                   <div class="row d-flex justify-content-center">
                     <div
@@ -52,13 +53,13 @@
                         </li>
                         <li class="list-group-item bg-transparent text-danger">Delete Account</li>
                         <li class="list-group-item bg-transparent text-danger">
-                          <button style="width: 100%" class="btn" @click="Logout()">Logout</button>
+                          <button style="width: 100%" class="btn text-danger" @click="Logout()">Logout</button>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-
+                <!-- nested route -->
                 <div class="col-md-8 bg-light">
                   <router-view></router-view>
                 </div>
@@ -74,7 +75,6 @@
 
 <script>
 import NavBarCom from '../../components/layout/NavBarCom.vue'
-// import ClientInfoCom from '../../components/profile/ClientInfoCom.vue'
 import FooterCom from '../../components/layout/FooterCom.vue'
 
 import axios from 'axios'

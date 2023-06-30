@@ -6,62 +6,47 @@
         <div class="col-md-12 justify-content-center">
           <div class="row">
             <h1>Change password</h1>
-            <!-- image -->
-            <div class="row d-flex justify-content-center text-center">
-              <div class="text-center">
-                <img
-                  :src="user.image"
-                  width="50"
-                  height="50"
-                  class="rounded-circle"
-                  alt="personal"
-                />
-              </div>
-            </div>
             <div class="row">
               <form class="form-inline" @submit.prevent="clientLogin">
                 <div class="row justify-content-center">
                   <div class="col-md-10 mt-lg-4 mb-lg-4">
                     <div class="row">
-                      <!-- name-->
+                      <!-- Current Password-->
                       <div class="col-md-6 mb-3">
-                        <label for="validationustomUsername">name</label>
+                        <label for="validationustomUsername">Current Password</label>
                         <div class="input-group">
                           <input
                             type="text"
                             class="form-control"
                             id="validationustomUsername"
-                            placeholder="Username"
+                            placeholder="Current Password"
                             aria-describedby="inputGroupPrepend"
-                            v-model="user.full_name"
                           />
                         </div>
                       </div>
                       <!-- email -->
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustomUsernam">email</label>
+                        <label for="validationCustomUsernam">New Password</label>
                         <div class="input-group">
                           <input
                             type="email"
                             class="form-control"
                             id="validationCustomUsernam"
-                            placeholder="Username"
+                            placeholder="New Password"
                             aria-describedby="inputGroupPrepend"
-                            v-model="user.email"
                           />
                         </div>
                       </div>
                       <!-- phone_Number -->
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustomUsername">Phone Number</label>
+                        <label for="validationCustomUsername">Confirm New Password</label>
                         <div class="input-group">
                           <input
                             type="text"
                             class="form-control"
                             id="validationCustomUsername"
-                            placeholder="password"
+                            placeholder="Confirm New Password"
                             aria-describedby="inputGroupPrepend"
-                            v-model="user.phone"
                           />
                         </div>
                       </div>
@@ -86,40 +71,40 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
-  data() {
-    return {
-      user: []
-    }
-  },
+  // data() {
+  //   return {
+  //     user: []
+  //   }
+  // },
   mounted() {
     let user = localStorage.getItem('user')
     if (!user) {
       this.$router.push({ name: 'login' })
     }
-    this.fetchclient()
+    // this.fetchclient()
   },
-  methods: {
-    async fetchclient() {
-      const token = localStorage.getItem('token')
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
+  // methods: {
+  //   async fetchclient() {
+  //     const token = localStorage.getItem('token')
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     }
 
-      await axios
-        .get('http://lawyer.phpv8.aait-d.com/api/client_web/profile', config)
-        .then((res) => {
-          this.user = res.data.data
-          console.log(this.user)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
-  }
+  //     await axios
+  //       .get('http://lawyer.phpv8.aait-d.com/api/client_web/profile', config)
+  //       .then((res) => {
+  //         this.user = res.data.data
+  //         // console.log(this.user)
+  //       })
+  //       .catch((error) => {
+  //         console.error(error)
+  //       })
+  //   }
+  // }
 }
 </script>
 
