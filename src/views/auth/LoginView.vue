@@ -147,7 +147,8 @@ export default {
           this.$router.push({ name: 'client' })
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err.response)
+          alert(err.response.data.message)
           // this.$router.push({ name: 'servererror' })
         })
     }

@@ -14,11 +14,6 @@
                     <div class="col-md-6">
                       <label class="mb-1 text-purple" for="fname">full_name</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <FontAwesome icon="user" class="fe-16" />
-                          </div>
-                        </div>
                         <input type="text" class="form-control" id="fname" />
                       </div>
                     </div>
@@ -28,11 +23,6 @@
                     <div class="col-md-12 mb-3">
                       <label class="mb-1 text-purple" for="email">email</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <FontAwesome icon="envelope" class="fe-16" />
-                          </div>
-                        </div>
                         <input type="email" class="form-control" id="email" />
                       </div>
                     </div>
@@ -43,11 +33,6 @@
                     <div class="col-md-6 mb-3">
                       <label class="mb-1 text-purple" for="password">password</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <FontAwesome icon="lock" class="fe-16" />
-                          </div>
-                        </div>
                         <input type="password" class="form-control" id="password" />
                       </div>
                     </div>
@@ -57,11 +42,6 @@
                         >password_confirmation</label
                       >
                       <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <FontAwesome icon="lock" class="fe-16" />
-                          </div>
-                        </div>
                         <input type="password" class="form-control" id="confirmPass" />
                       </div>
                     </div>
@@ -71,11 +51,6 @@
                     <div class="col-md-12 mb-3">
                       <label class="mb-1 text-purple" for="email">phone</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <FontAwesome icon="phone" class="fe-16" />
-                          </div>
-                        </div>
                         <input type="text" class="form-control" id="email" />
                       </div>
                     </div>
