@@ -6,7 +6,7 @@
         <div class="col-lg-6 m-0 p-0 align-self-center">
           <div class="row p-0 m-auto justify-content-center">
             <div class="col-md-10">
-              <form class="form-inline">
+              <form class="form-inline"  @submit.prevent="Register()">
                 <div class="row">
                   <!-- name -->
                   <div class="row mb-3">
@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                       <label class="mb-1 text-purple" for="fname">full_name</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <input type="text" class="form-control" id="fname" />
+                        <input type="text" class="form-control" v-model="full_name" id="fname" />
                       </div>
                     </div>
                   </div>
@@ -23,7 +23,7 @@
                     <div class="col-md-12 mb-3">
                       <label class="mb-1 text-purple" for="email">email</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <input type="email" class="form-control" id="email" />
+                        <input type="email" v-model="email" class="form-control" id="email" />
                       </div>
                     </div>
                   </div>
@@ -33,7 +33,12 @@
                     <div class="col-md-6 mb-3">
                       <label class="mb-1 text-purple" for="password">password</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <input type="password" class="form-control" id="password" />
+                        <input
+                          type="password"
+                          v-model="password"
+                          class="form-control"
+                          id="password"
+                        />
                       </div>
                     </div>
                     <!-- تاكيد كلمة المرور -->
@@ -42,16 +47,35 @@
                         >password_confirmation</label
                       >
                       <div class="input-group mb-2 mr-sm-2">
-                        <input type="password" class="form-control" id="confirmPass" />
+                        <input
+                          type="password"
+                          v-model="password_confirmation"
+                          class="form-control"
+                          id="confirmPass"
+                        />
                       </div>
                     </div>
                   </div>
                   <!-- phone -->
                   <div class="row">
                     <div class="col-md-12 mb-3">
-                      <label class="mb-1 text-purple" for="email">phone</label>
+                      <label class="mb-1 text-purple" for="phone">phone</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <input type="text" class="form-control" id="email" />
+                        <input type="text" v-model="phone" class="form-control" id="phone" />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- phone_code -->
+                  <div class="row">
+                    <div class="col-md-12 mb-3">
+                      <label class="mb-1 text-purple" for="phone_code">phone_code</label>
+                      <div class="input-group mb-2 mr-sm-2">
+                        <input
+                          type="text"
+                          v-model="phone_code"
+                          class="form-control"
+                          id="phone_code"
+                        />
                       </div>
                     </div>
                   </div>
@@ -60,13 +84,13 @@
                     <div class="col-md-4 justify-content-start">
                       <button style="width: 100%" class="btn text-white">إنشاء حساب</button>
                       <div class="text-center mt-lg-2">
-                        <span class="fs-10 fw-bold">بالفعل تمتلك حساب؟</span>
-                        <router-link
-                          class="bg-white text-purple fs-10 fw-bold cairo"
+                        <span class="fs-10 fw-bold">Have an account? login</span>
+                        <button
+                          class="btn text-purple fs-10 fw-bold cairo"
                           :to="{ name: 'login' }"
                         >
                           تسجيل دخول
-                        </router-link>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -87,8 +111,53 @@
 </template>
 
 <script>
+import setAuthHeader from '@/utils/setAuthHeader'
+import axios from 'axios'
 export default {
-  name: 'RegistrationCom'
+  name: 'LoginCom',
+  data() {
+    return {
+      full_name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      phone: '',
+      phone_code: ''
+    }
+  },
+  // mounted() {
+  //   let user = localStorage.getItem('user')
+  //   if (user) {
+  //     this.$router.push({ name: 'client' })
+  //   }
+  // },
+  methods: {
+    async Register() {
+      const credentaials = {
+        full_name:this.full_name,
+        email:this.email,
+        password:this.password,
+        password_confirmation: this.password_confirmation ,
+        phone: this.phone,
+        phone_code: this.phone_code,
+      }
+      console.log('form validated Succesfuly')
+      await axios
+        .post(`http://lawyer.phpv8.aait-d.com/api/client_web/register`, credentaials, {})
+        .then((res) => {
+          console.log(res)
+          localStorage.setItem('token', res.data.data.token)
+          localStorage.setItem('user', JSON.stringify(res.data))
+          setAuthHeader(res.data.token)
+          this.$router.push({ name: 'client' })
+        })
+        .catch((err) => {
+          console.log(err.response)
+          alert(err.response.data.message)
+          // this.$router.push({ name: 'servererror' })
+        })
+    }
+  }
 }
 </script>
 

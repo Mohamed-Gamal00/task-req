@@ -34,6 +34,7 @@ if (localStorage.token) {
   setAuthHeader(false);
 }
 library.add(fas, far, fab)
+/* phone number */
 const app = createApp(App)
 .use(store)
 app.use(VueSweetalert2)
