@@ -21,7 +21,9 @@
             </div>
             &nbsp; &nbsp;&nbsp; &nbsp;
             <div v-if="!user">
-              <a href="#" class="text-yellow">Create Account</a>&nbsp; &nbsp;
+              <router-link class="text-decoration-none text-yellow" :to="{ name: 'register' }"
+                >Create Account</router-link
+              >&nbsp; &nbsp;
               <router-link class="text-decoration-none text-yellow" :to="{ name: 'login' }"
                 >Login</router-link
               >

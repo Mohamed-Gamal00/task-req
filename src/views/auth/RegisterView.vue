@@ -84,7 +84,14 @@
                     <div class="col-md-4 justify-content-start">
                       <button style="width: 100%" class="btn text-white">إنشاء حساب</button>
                       <div class="text-center mt-lg-2">
-                        <span class="fs-10 fw-bold">Have an account? login</span>
+                        <span class="fs-10 fw-bold"
+                          >Have an account?
+                          <router-link
+                            class="text-decoration-none text-yellow"
+                            :to="{ name: 'login' }"
+                            >Login</router-link
+                          ></span
+                        >
                         <button type="submit" class="btn text-purple fs-10 fw-bold cairo">
                           Create New Account
                         </button>
@@ -229,15 +236,15 @@ export default {
         .catch((error) => {
           if (error.response) {
             // Handle server error
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
+            alert(error.response.data)
+            alert(error.response.status)
+            alert(error.response.headers)
           } else if (error.request) {
             // Handle network error
-            console.log(error.request)
+            alert(error.request)
           } else {
             // Handle other errors
-            console.log('Error:', error.message)
+            alert('Error:', error.message)
           }
         })
     },
@@ -258,10 +265,19 @@ export default {
           console.log('veryfy code success')
           this.$router.push({ name: 'client' })
         })
-        .catch((err) => {
-          console.log(err.response)
-          alert(err.response.data.message)
-          // this.$router.push({ name: 'servererror' })
+        .catch((error) => {
+          if (error.response) {
+            // Handle server error
+            alert(error.response.data)
+            alert(error.response.status)
+            alert(error.response.headers)
+          } else if (error.request) {
+            // Handle network error
+            alert(error.request)
+          } else {
+            // Handle other errors
+            console.log('Error:', error.message)
+          }
         })
     }
   }
